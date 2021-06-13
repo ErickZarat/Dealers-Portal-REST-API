@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+
+  db:
+    image: mysql:5.7
+    ports:
+      - "3306:3306"
+    restart: always
+    environment:
+      MYSQL_DATABASE: portal
+      MYSQL_USER: springuser
+      MYSQL_PASSWORD: Iengu2ai
+      MYSQL_ROOT_PASSWORD: ooDoh4Ei
+    volumes:
+      - db-data:/var/lib/mysql
+
+volumes:
+  db-data:
