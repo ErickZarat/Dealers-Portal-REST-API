@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("/dealer")
+@RequestMapping("/dealers")
 public class DealerController {
     @Autowired
     private DealerRepository dealerRepository;

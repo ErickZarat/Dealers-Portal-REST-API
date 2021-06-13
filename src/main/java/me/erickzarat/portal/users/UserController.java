@@ -12,7 +12,7 @@ public class UserController {
     @Autowired
     private UserRepository userRepository;
 
-    @GetMapping("/dealer/{dealerCode}/users")
+    @GetMapping("/dealers/{dealerCode}/users")
     public @ResponseBody
     Iterable<User> getAllUsers(@PathVariable("dealerCode") Integer dealerCode) {
         return userRepository.findAllByDealer_Code(dealerCode);
@@ -24,7 +24,7 @@ public class UserController {
         return response.orElse(null);
     }
 
-    @PostMapping("/dealer/{dealerCode}/users/")
+    @PostMapping("/dealers/{dealerCode}/users/")
     public @ResponseBody User addUser(@RequestBody User user){
         return userRepository.save(user);
     }

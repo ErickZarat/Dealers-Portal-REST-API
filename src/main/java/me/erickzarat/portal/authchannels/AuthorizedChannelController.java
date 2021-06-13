@@ -13,7 +13,7 @@ public class AuthorizedChannelController {
     @Autowired
     private AuthorizedChannelRepository authorizedChannelRepository;
 
-    @GetMapping("/dealer/{dealerCode}/authorized-channels")
+    @GetMapping("/dealers/{dealerCode}/authorized-channels")
     public @ResponseBody Iterable<AuthorizedChannel> getAllAuthorizedChannels(@PathVariable("dealerCode") Integer dealerCode) {
         return authorizedChannelRepository.findAllByDealer_Code(dealerCode);
     }
@@ -24,7 +24,7 @@ public class AuthorizedChannelController {
         return response.orElse(null);
     }
 
-    @PostMapping("/dealer/{dealerCode}/authorized-channels/")
+    @PostMapping("/dealers/{dealerCode}/authorized-channels/")
     public @ResponseBody AuthorizedChannel addAuthorizedChannel(@RequestBody AuthorizedChannel authorizedChannel){
         return authorizedChannelRepository.save(authorizedChannel);
     }

@@ -12,7 +12,7 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-    @GetMapping("/dealer/{dealerCode}/products")
+    @GetMapping("/dealers/{dealerCode}/products")
     public @ResponseBody Iterable<Product> getAllProducts(@PathVariable("dealerCode") Integer dealerCode) {
         return productRepository.findAllByDealer_Code(dealerCode);
     }
@@ -23,7 +23,7 @@ public class ProductController {
         return response.orElse(null);
     }
 
-    @PostMapping("/dealer/{dealerCode}/products/")
+    @PostMapping("/dealers/{dealerCode}/products/")
     public @ResponseBody Product addProduct(@RequestBody Product product){
         return productRepository.save(product);
     }
