@@ -1,34 +1,33 @@
 package me.erickzarat.portal.products;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
-@Controller
-@RequestMapping
+@RestController
+@RequestMapping("/products")
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-    @GetMapping("/dealers/{dealerCode}/products")
-    public @ResponseBody Iterable<Product> getAllProducts(@PathVariable("dealerCode") Integer dealerCode) {
+    @GetMapping("/")
+    public @ResponseBody Iterable<Product> getAllProducts(@RequestParam(value = "dealerCode", required = false) Integer dealerCode) {
         return productRepository.findAllByDealer_Code(dealerCode);
     }
 
-    @GetMapping("/products/{code}")
+    @GetMapping("/{code}")
     public @ResponseBody Product getProduct(@PathVariable("code") Integer code) {
         Optional<Product> response =  productRepository.findById(code);
         return response.orElse(null);
     }
 
-    @PostMapping("/dealers/{dealerCode}/products/")
+    @PostMapping("/")
     public @ResponseBody Product addProduct(@RequestBody Product product){
         return productRepository.save(product);
     }
 
-    @PutMapping("/products/{code}")
+    @PutMapping("/{code}")
     public @ResponseBody Product updateProduct(@RequestBody Product product){
         if (productRepository.existsById(product.code)){
             return productRepository.save(product);
@@ -37,7 +36,7 @@ public class ProductController {
         }
     }
 
-    @DeleteMapping("/products/{code}")
+    @DeleteMapping("/{code}")
     public @ResponseBody Boolean deleteProduct(@PathVariable("code") Integer code){
         if (productRepository.existsById(code)){
             productRepository.deleteById(code);
