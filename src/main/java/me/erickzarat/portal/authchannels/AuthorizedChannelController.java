@@ -1,5 +1,7 @@
 package me.erickzarat.portal.authchannels;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -7,12 +9,14 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/authorized-channels")
+@Api(value = "Authorized Channels", description = "REST API for Authorized Channels", tags = { "Authorized Channels" })
 public class AuthorizedChannelController {
 
     @Autowired
     private AuthorizedChannelRepository authorizedChannelRepository;
 
-    @GetMapping("/")
+    @GetMapping
+    @ApiOperation(value="Gets all Authorized Channels", tags = { "Authorized Channels" }, notes = "optional filter by dealer code")
     public @ResponseBody Iterable<AuthorizedChannel> getAllAuthorizedChannels(@RequestParam(value = "dealerCode", required = false) Integer dealerCode) {
         return authorizedChannelRepository.findAllByDealer_Code(dealerCode);
     }
@@ -23,7 +27,7 @@ public class AuthorizedChannelController {
         return response.orElse(null);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public @ResponseBody AuthorizedChannel addAuthorizedChannel(@RequestBody AuthorizedChannel authorizedChannel){
         return authorizedChannelRepository.save(authorizedChannel);
     }

@@ -9,7 +9,6 @@ import javax.persistence.*;
 public class Schedule {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @JsonIgnore
     Integer id;
 
     String initialHour;

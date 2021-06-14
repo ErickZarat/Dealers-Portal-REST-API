@@ -1,5 +1,6 @@
 package me.erickzarat.portal.dealers;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -7,11 +8,13 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/dealers")
+@Api(value = "Dealers", description = "REST API for Dealers", tags = { "Dealers" })
 public class DealerController {
+
     @Autowired
     private DealerRepository dealerRepository;
 
-    @GetMapping("/")
+    @GetMapping
     public @ResponseBody
     Iterable<Dealer> getAllDealers() {
         return dealerRepository.findAll();
@@ -23,7 +26,7 @@ public class DealerController {
         return response.orElse(null);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public @ResponseBody Dealer addDealer(@RequestBody Dealer dealer){
         return dealerRepository.save(dealer);
     }

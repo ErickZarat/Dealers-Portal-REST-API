@@ -1,12 +1,14 @@
 package me.erickzarat.portal.schedules;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/schedule")
+@RequestMapping("/schedules")
+@Api(value = "Schedules", description = "REST API for Schedules", tags = { "Schedules" })
 public class ScheduleController {
     @Autowired
     private ScheduleRepository scheduleRepository;
@@ -17,7 +19,12 @@ public class ScheduleController {
         return response.orElse(null);
     }
 
-    @PostMapping("/")
+    @GetMapping
+    public @ResponseBody Iterable<Schedule> getSchedules() {
+        return scheduleRepository.findAll();
+    }
+
+    @PostMapping
     public @ResponseBody Schedule saveSchedule(@RequestBody Schedule schedule){
         return scheduleRepository.save(schedule);
     }

@@ -1,5 +1,6 @@
 package me.erickzarat.portal.products;
 
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -7,11 +8,12 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
+@Api(value = "Products", description = "REST API for Products", tags = { "Products" })
 public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
-    @GetMapping("/")
+    @GetMapping
     public @ResponseBody Iterable<Product> getAllProducts(@RequestParam(value = "dealerCode", required = false) Integer dealerCode) {
         return productRepository.findAllByDealer_Code(dealerCode);
     }
@@ -22,7 +24,7 @@ public class ProductController {
         return response.orElse(null);
     }
 
-    @PostMapping("/")
+    @PostMapping
     public @ResponseBody Product addProduct(@RequestBody Product product){
         return productRepository.save(product);
     }
