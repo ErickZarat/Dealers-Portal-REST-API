@@ -1,5 +1,6 @@
 package me.erickzarat.portal.dealers;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import me.erickzarat.portal.authchannels.AuthorizedChannel;
 import me.erickzarat.portal.products.Product;
 import me.erickzarat.portal.schedules.Schedule;
@@ -12,6 +13,7 @@ import java.util.List;
 public class Dealer {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonProperty("id")
     Integer code;
     String name;
     String notificationEmail;

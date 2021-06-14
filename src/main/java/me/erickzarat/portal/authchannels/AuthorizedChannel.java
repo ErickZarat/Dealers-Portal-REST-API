@@ -1,6 +1,7 @@
 package me.erickzarat.portal.authchannels;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import me.erickzarat.portal.dealers.Dealer;
 
 import javax.persistence.*;
@@ -9,6 +10,7 @@ import javax.persistence.*;
 public class AuthorizedChannel {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @JsonProperty("id")
     Integer code;
     String name;
 
