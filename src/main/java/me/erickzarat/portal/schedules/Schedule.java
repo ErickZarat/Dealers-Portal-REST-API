@@ -12,10 +12,11 @@ public class Schedule {
     @JsonIgnore
     Integer id;
 
-    Integer initialHour;
-    Integer endHour;
+    String initialHour;
+    String endHour;
 
-    @OneToOne
+    @JsonIgnore
+    @OneToOne(fetch = FetchType.LAZY)
     Dealer dealer;
 
     public Schedule() {
@@ -41,19 +42,19 @@ public class Schedule {
         this.id = id;
     }
 
-    public Integer getInitialHour() {
+    public String getInitialHour() {
         return initialHour;
     }
 
-    public void setInitialHour(Integer initialHour) {
+    public void setInitialHour(String initialHour) {
         this.initialHour = initialHour;
     }
 
-    public Integer getEndHour() {
+    public String getEndHour() {
         return endHour;
     }
 
-    public void setEndHour(Integer endHour) {
+    public void setEndHour(String endHour) {
         this.endHour = endHour;
     }
 }

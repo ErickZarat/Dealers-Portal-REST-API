@@ -1,5 +1,6 @@
 package me.erickzarat.portal.users;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import me.erickzarat.portal.dealers.Dealer;
 
 import javax.persistence.*;
@@ -13,7 +14,8 @@ public class User {
     String email;
     String phone;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     Dealer dealer;
 
     public User() {

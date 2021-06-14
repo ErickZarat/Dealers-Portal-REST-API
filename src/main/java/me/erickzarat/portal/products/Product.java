@@ -1,12 +1,9 @@
 package me.erickzarat.portal.products;
 
-import me.erickzarat.portal.authchannels.AuthorizedChannel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import me.erickzarat.portal.dealers.Dealer;
-import me.erickzarat.portal.schedules.Schedule;
-import me.erickzarat.portal.users.User;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
 public class Product {
@@ -17,7 +14,8 @@ public class Product {
     String description;
     Double amount;
 
-    @ManyToOne
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     Dealer dealer;
 
     public Product() {

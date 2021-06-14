@@ -1,5 +1,6 @@
 package me.erickzarat.portal.authchannels;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import me.erickzarat.portal.dealers.Dealer;
 
 import javax.persistence.*;
@@ -11,8 +12,8 @@ public class AuthorizedChannel {
     Integer code;
     String name;
 
-    @ManyToOne
-    @JoinColumn(name = "dealer_code")
+    @JsonIgnore
+    @ManyToOne(fetch = FetchType.LAZY)
     Dealer dealer;
 
     public AuthorizedChannel() { }
